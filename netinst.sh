@@ -8,3 +8,5 @@ apt-get install\
     gimp inkscape blender\
     --no-install-recommends --assume-yes\
 ;
+
+startx;
