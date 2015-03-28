@@ -14,6 +14,7 @@ apt-get install \
     gimp inkscape blender `# Graphical Editors (Rasta, Vector, 3D)` \
     --no-install-recommends --assume-yes \
 ;
+# http://stackoverflow.com/a/12797512
 
 # https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg
 
