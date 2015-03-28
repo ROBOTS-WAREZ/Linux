@@ -15,6 +15,8 @@ apt-get install \
     --no-install-recommends --assume-yes \
 ;
 
+# https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg
+
 ######## Firefox || Iceweasel || GNU IceCat ########
 # about:config (http://kb.mozillazine.org/User.js_file#Removing_user.js_entries)
 echo '
