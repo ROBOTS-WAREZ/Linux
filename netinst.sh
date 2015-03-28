@@ -18,6 +18,10 @@ apt-get install \
 
 # https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg
 
+######## Enable sudo ########
+adduser $USER sudo;
+# https://wiki.debian.org/EnvironmentVariables
+
 ######## Firefox || Iceweasel || GNU IceCat ########
 # about:config (http://kb.mozillazine.org/User.js_file#Removing_user.js_entries)
 echo '
