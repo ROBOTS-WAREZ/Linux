@@ -62,7 +62,7 @@ iptables -A INPUT -p icmp --icmp-type 8 -m limit --limit 1/second -j ACCEPT
 
 # Allow incoming signals.
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-iptables -A INPUT -p tcp --match multiport --dports 22,80 -m state --state NEW -s 0.0.0.0/0 -j ACCEPT
+iptables -A INPUT -p tcp --match multiport --dports 22,80,443 -m state --state NEW -s 0.0.0.0/0 -j ACCEPT
 iptables -A INPUT -p udp -m udp --dport 53 -s 0.0.0.0/0 -j ACCEPT
 
 # Allow outgoing signals.
