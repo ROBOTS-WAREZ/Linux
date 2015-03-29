@@ -1,9 +1,10 @@
 #!/bin/bash
-# su; # Superuser login.
+# su; # SuperUser login.
 # wget -O- https://raw.github.com/ROBOTS-WAREZ/Linux/master/netinst.sh | bash; # Run this script.
-# adduser $USER sudo; # Enable sudo.
-# exit; # Superuser signout.
+# exit; # SuperUser signout.
 #http://smxi.org/site/install.htm
+
+username=getent passwd 1000 | cut -d: -f1
 
 apt-get update;
 apt-get dist-upgrade;
@@ -24,6 +25,9 @@ apt-get install \
 # https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg
 # https://wiki.debian.org/EnvironmentVariables
 
+######## Enable sudo ########
+adduser $username sudo;
+
 ######## Firefox || Iceweasel || GNU IceCat ########
 # about:config (http://kb.mozillazine.org/User.js_file#Removing_user.js_entries)
 echo '
@@ -31,7 +35,7 @@ echo '
 user_pref("browser.startup.page", 3);
 // Use autoscrolling (middle click and drag to navigate the page)
 user_pref("general.autoScroll", true);
-' > ~/.mozilla/firefox/$(ls ~/.mozilla/firefox/ | grep .default)/user.js; # The profile directory? What if (profiles>1)?
+' > /home/$username/.mozilla/firefox/$(ls ~/.mozilla/firefox/ | grep .default)/user.js; # The profile directory? What if (profiles>1)?
 
 ######## Firewall ########
 # http://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
