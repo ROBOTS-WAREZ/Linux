@@ -3,12 +3,14 @@
 # wget -O- https://raw.github.com/ROBOTS-WAREZ/Linux/master/netinst.sh | bash; # Run this script.
 # adduser $USER sudo; # Enable sudo.
 # exit; # Superuser signout.
+#http://smxi.org/site/install.htm
 
 apt-get update;
 apt-get dist-upgrade;
 
 ######## Software Package Installations Terminally ########
 apt-get install \
+    gawk unzip \
     iptables-persistent \
     sudo adduser \
     xorg openbox \
@@ -20,7 +22,6 @@ apt-get install \
 # http://stackoverflow.com/a/12797512
 
 # https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg
-
 # https://wiki.debian.org/EnvironmentVariables
 
 ######## Firefox || Iceweasel || GNU IceCat ########
