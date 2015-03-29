@@ -5,6 +5,7 @@
 # exit; # SuperUser signout.
 
 username=$(getent passwd 1000 | cut -d: -f1);
+userpath=/home/$username;
 
 apt-get update;
 apt-get dist-upgrade;
@@ -37,7 +38,14 @@ echo '
 user_pref("browser.startup.page", 3);
 // Use autoscrolling (middle click and drag to navigate the page)
 user_pref("general.autoScroll", true);
-' > /home/$username/.mozilla/firefox/$(ls ~/.mozilla/firefox/ | grep .default)/user.js; # The profile directory? What if (profiles>1)?
+' > $userpath/.mozilla/firefox/$(ls ~/.mozilla/firefox/ | grep .default)/user.js; # The profile directory? What if (profiles>1)?
+
+######## Openbox ########
+# https://wiki.archlinux.org/index.php/openbox
+# http://openbox.org/wiki/Help:Configuration
+
+mkdir -p $userpath/.config/openbox
+cp -R /etc/xdg/openbox/* $userpath/.config/openbox
 
 ######## Firewall ########
 # http://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
