@@ -1,5 +1,8 @@
 #!/bin/bash
-# wget -O- https://raw.github.com/ROBOTS-WAREZ/Linux/master/netinst.sh | bash;
+# su; # Superuser login.
+# wget -O- https://raw.github.com/ROBOTS-WAREZ/Linux/master/netinst.sh | bash; # Run this script.
+# adduser $USER sudo; # Enable sudo.
+# exit; # Superuser signout.
 
 apt-get update;
 apt-get dist-upgrade;
@@ -18,8 +21,6 @@ apt-get install \
 
 # https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg
 
-######## Enable sudo ########
-adduser $USER sudo;
 # https://wiki.debian.org/EnvironmentVariables
 
 ######## Firefox || Iceweasel || GNU IceCat ########
