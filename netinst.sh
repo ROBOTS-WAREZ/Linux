@@ -25,7 +25,7 @@ apt-get install \
 apt-get autoremove && apt-get autoclean;
 
 #http://smxi.org/site/install.htm
-cd /usr/local/bin && wget -Nc smxi.org/smxi.zip && unzip smxi.zip && smxi;
+cd /usr/local/bin && wget -Nc smxi.org/smxi.zip && unzip smxi.zip;
 
 ######## Enable sudo ########
 adduser $username sudo;
