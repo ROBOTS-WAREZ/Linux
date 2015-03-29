@@ -1,10 +1,10 @@
 #!/bin/bash
 # su; # SuperUser login.
 # wget -O- https://raw.github.com/ROBOTS-WAREZ/Linux/master/netinst.sh | bash; # Run this script.
+# smxi; # http://smxi.org/site/install.htm
 # exit; # SuperUser signout.
-#http://smxi.org/site/install.htm
 
-username=getent passwd 1000 | cut -d: -f1
+username=$(getent passwd 1000 | cut -d: -f1);
 
 apt-get update;
 apt-get dist-upgrade;
@@ -22,8 +22,8 @@ apt-get install \
 ;
 # http://stackoverflow.com/a/12797512
 
-# https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg
-# https://wiki.debian.org/EnvironmentVariables
+#http://smxi.org/site/install.htm
+cd /usr/local/bin && wget -Nc smxi.org/smxi.zip && unzip smxi.zip && smxi;
 
 ######## Enable sudo ########
 adduser $username sudo;
@@ -86,3 +86,6 @@ iptables -A OUTPUT -p udp --dport 53 -m state --state NEW -j ACCEPT
 iptables-save > /etc/iptables/rules.v4;
 ip6tables-save > /etc/iptables/rules.v6;
 service iptables-persistent start;
+
+# https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg
+# https://wiki.debian.org/EnvironmentVariables
