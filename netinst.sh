@@ -22,6 +22,8 @@ apt-get install \
 ;
 # http://stackoverflow.com/a/12797512
 
+apt-get autoremove && apt-get autoclean;
+
 #http://smxi.org/site/install.htm
 cd /usr/local/bin && wget -Nc smxi.org/smxi.zip && unzip smxi.zip && smxi;
 
