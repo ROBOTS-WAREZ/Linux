@@ -18,6 +18,7 @@ apt-get install \
     xorg openbox \
     openjdk-7-jdk openjdk-7-jre icedtea-netx `# Java` \
     iceweasel `# Web Browser & File Viewer` \
+    vlc `# Media Player` \
     gimp inkscape blender `# Visiographical Editors (Rasta, Vector, 3D)` \
     audacity `# Audiographical Editor` \
     --no-install-recommends --assume-yes \
