@@ -1,7 +1,7 @@
 #!/bin/bash
 # su; # SuperUser login.
 # wget -O- https://raw.github.com/ROBOTS-WAREZ/Linux/master/netinst.sh | bash; # Run this script.
-# smxi; # Mainly for the graphics drivers. [http://smxi.org/site/install.htm]
+# smxi; # Mainly for the GPU drivers. [http://smxi.org/site/install.htm]
 # exit; # SuperUser signout.
 
 username=$(getent passwd 1000 | cut -d: -f1);
