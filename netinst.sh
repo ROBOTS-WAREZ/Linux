@@ -65,7 +65,7 @@ echo '
     <action name="Execute"><execute>x-www-browser</execute></action>
   </item>
   <item label="File Manager">
-    <action name="Execute"><execute>x-www-browser -new-window file://'$userpath'</execute></action>
+    <action name="Execute"><execute>x-www-browser -new-window file://'$userpath'/</execute></action>
   </item>
   <!-- This requires the presence of the 'menu' package to work -->
   <menu id="/Debian" />
