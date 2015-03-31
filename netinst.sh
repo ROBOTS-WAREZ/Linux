@@ -112,7 +112,7 @@ iptables -P INPUT DROP;
 iptables -P OUTPUT DROP;
 iptables -P FORWARD DROP;
 
-# Deny corrupt/malformed TCP signals.
+# Deny malformed/illegal/corrupt TCP signals.
 iptables -A INPUT -p tcp ! --syn -m state --state NEW -j DROP;
 iptables -A INPUT -p tcp --tcp-flags ALL FIN,URG,PSH -j DROP;
 iptables -A INPUT -p tcp --tcp-flags ALL ALL -j DROP;
