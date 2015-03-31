@@ -125,7 +125,7 @@ iptables -A INPUT -p tcp --tcp-flags SYN,FIN SYN,FIN -j DROP;
 
 # Allow incoming signals.
 iptables -A INPUT -p tcp -m multiport --sports 22,80,443 -m state --state ESTABLISHED -j ACCEPT;
-iptables -A INPUT -p udp --sport 53 -j ACCEPT;
+iptables -A INPUT -p udp --sport 53 -m state --state ESTABLISHED -j ACCEPT;
 iptables -A INPUT -p icmp --icmp-type echo-reply -j ACCEPT;
 
 # Allow outgoing signals.
