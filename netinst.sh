@@ -122,14 +122,14 @@ iptables -A INPUT -p tcp --tcp-flags SYN,RST SYN,RST -j DROP;
 iptables -A INPUT -p tcp --tcp-flags SYN,FIN SYN,FIN -j DROP;
 
 # Allow incoming signals.
-iptables -A INPUT -i lo -j ACCEPT;
-iptables -A INPUT -p icmp --icmp-type echo-reply -j ACCEPT;
+iptables -A INPUT -i lo -m state --state ESTABLISHED,RELATED -j ACCEPT;
+iptables -A INPUT -p icmp --icmp-type echo-reply -m state --state ESTABLISHED,RELATED -j ACCEPT;
 iptables -A INPUT -p udp -m multiport --sports 53,123 -m state --state ESTABLISHED,RELATED -j ACCEPT;
 iptables -A INPUT -p tcp -m multiport --sports 22,80,443 -m state --state ESTABLISHED,RELATED -j ACCEPT;
 
 # Allow outgoing signals.
-iptables -A OUTPUT -o lo -j ACCEPT;
-iptables -A OUTPUT -p icmp --icmp-type echo-request -j ACCEPT;
+iptables -A OUTPUT -o lo --state NEW,ESTABLISHED,RELATED -j ACCEPT;
+iptables -A OUTPUT -p icmp --icmp-type echo-request -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT;
 iptables -A OUTPUT -p udp -m multiport --dports 53,123 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT;
 iptables -A OUTPUT -p tcp -m multiport --dports 22,80,443 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT;
 
