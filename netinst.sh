@@ -131,7 +131,7 @@ iptables -A INPUT -p icmp --icmp-type echo-reply -j ACCEPT;
 
 # Allow outgoing signals.
 iptables -A OUTPUT -p tcp -m multiport --dports 22,80,443 -m state --state NEW,ESTABLISHED -j ACCEPT;
-iptables -A OUTPUT -p udp --dport 53 -m state --state NEW -j ACCEPT;
+iptables -A OUTPUT -p udp --dport 53 -m state --state NEW,ESTABLISHED -j ACCEPT;
 iptables -A OUTPUT -p icmp --icmp-type echo-request -j ACCEPT;
 
 # Defensive persistence.
