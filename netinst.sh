@@ -96,6 +96,7 @@ echo '
 ######## Firewall ########
 # http://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
 # http://unix.stackexchange.com/q/108029
+# http://askubuntu.com/q/423630
 
 # Just in case, you never know. ;-)
 ip6tables --flush;
