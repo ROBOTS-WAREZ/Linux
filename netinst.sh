@@ -115,7 +115,7 @@ iptables -A INPUT -i lo -j ACCEPT
 iptables -A OUTPUT -o lo -j ACCEPT
 
 # Deny corrupt/malformed TCP signals.
-iptables -A INPUT -p tcp ! --syn -m state --state NEW -s 0.0.0.0/0 -j DROP
+iptables -A INPUT -p tcp ! --syn -m state --state NEW -j DROP
 iptables -A INPUT -p tcp --tcp-flags ALL FIN,URG,PSH -j DROP
 iptables -A INPUT -p tcp --tcp-flags ALL ALL -j DROP
 iptables -A INPUT -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -j DROP
@@ -124,18 +124,21 @@ iptables -A INPUT -p tcp --tcp-flags SYN,RST SYN,RST -j DROP
 iptables -A INPUT -p tcp --tcp-flags SYN,FIN SYN,FIN -j DROP
 
 # Allow valid ICMP signals.
+iptables -A OUTPUT -p icmp --icmp-type echo-request -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type echo-reply -j ACCEPT
 iptables -A INPUT -p icmp --icmp-type 0 -j ACCEPT
 iptables -A INPUT -p icmp --icmp-type 3 -j ACCEPT
 iptables -A INPUT -p icmp --icmp-type 11 -j ACCEPT
 iptables -A INPUT -p icmp --icmp-type 8 -m limit --limit 1/second -j ACCEPT
 
 # Allow incoming signals.
-iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-iptables -A INPUT -p tcp --match multiport --dports 22,80,443 -m state --state NEW -s 0.0.0.0/0 -j ACCEPT
-iptables -A INPUT -p udp -m udp --dport 53 -s 0.0.0.0/0 -j ACCEPT
+iptables -I INPUT 1 -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p tcp -m multiport --sports 22,80,443 -m state --state ESTABLISHED -j ACCEPT
+iptables -A INPUT -p udp --sport 53 -j ACCEPT
 
 # Allow outgoing signals.
 iptables -I OUTPUT 1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp -m multiport --dports 22,80,443 -m state --state NEW,ESTABLISHED -j ACCEPT
 iptables -A OUTPUT -p udp --dport 53 -m state --state NEW -j ACCEPT
 
 # Defensive persistence.
