@@ -33,6 +33,9 @@ cd /usr/local/bin && wget -Nc smxi.org/smxi.zip && unzip smxi.zip;
 ######## Enable sudo ########
 adduser $username sudo;
 
+######## Audio ########
+alsactl init;
+
 ######## Firefox || Iceweasel || GNU IceCat ########
 # about:config (http://kb.mozillazine.org/User.js_file#Removing_user.js_entries)
 echo '
