@@ -61,10 +61,10 @@ echo '
                 file:///usr/share/openbox/menu.xsd">
 
 <menu id="root-menu" label="Openbox 3">
-  <item label="Terminal emulator">
+  <item label="Terminal Emulator">
     <action name="Execute"><execute>x-terminal-emulator</execute></action>
   </item>
-  <item label="Web browser">
+  <item label="Web Browser">
     <action name="Execute"><execute>x-www-browser</execute></action>
   </item>
   <item label="File Manager">
