@@ -22,7 +22,7 @@ apt-get install \
     vlc `# Media Player` \
     gimp inkscape blender `# Visiographical Editors (Rasta, Vector, 3D)` \
     audacity `# Audiographical Editor` \
---assume-yes --no-install-recommends;
+--assume-yes;
 # http://stackoverflow.com/a/12797512
 
 apt-get autoremove && apt-get autoclean;
