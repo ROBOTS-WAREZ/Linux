@@ -11,14 +11,17 @@ This is just a list of add-ons for Iceweasel.
 * [Links](https://addons.mozilla.org/en-US/firefox/addon/wot-safe-browsing-tool/)
 * [Domain](https://addons.mozilla.org/en-US/firefox/addon/flagfox/)
 
+## Anonymity Services
+* [Disposable Email](https://addons.mozilla.org/en-US/firefox/addon/bloody-vikings/)
+
+## Communication Services
+* [IRC](https://addons.mozilla.org/en-US/firefox/addon/chatzilla/)
+
 ## Augmented Browsing
 * [Mod.js](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)
 * [Mod.css](https://addons.mozilla.org/en-US/firefox/addon/stylish/)
 * [Advert Filter](https://addons.mozilla.org/en-US/firefox/addon/ublock/)
 * [YouTube Remote](https://addons.mozilla.org/en-us/firefox/addon/cleantube/)
-
-## Anonymity Services
-* [Disposable Email](https://addons.mozilla.org/en-US/firefox/addon/bloody-vikings/)
 
 ## Automation
 * [Macro Recorder](https://addons.mozilla.org/en-US/firefox/addon/imacros-for-firefox/)
