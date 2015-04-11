@@ -1,5 +1,5 @@
 # Firefox Extensional Zygosis
-This is just a list of add-ons for Iceweasel.
+This **is just a list of add-ons for Iceweasel.
 
 ## Charitable Surfing
 * [Tab for a Cause!](https://addons.mozilla.org/En-uS/firefox/addon/tab-for-a-cause/)
