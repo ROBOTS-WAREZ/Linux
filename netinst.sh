@@ -120,6 +120,7 @@ iptables -A INPUT -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -j DROP;
 iptables -A INPUT -p tcp --tcp-flags ALL NONE -j DROP;
 iptables -A INPUT -p tcp --tcp-flags SYN,RST SYN,RST -j DROP;
 iptables -A INPUT -p tcp --tcp-flags SYN,FIN SYN,FIN -j DROP;
+# http://security.stackexchange.com/a/4745
 
 # Allow incoming signals.
 iptables -A INPUT -i lo -m state --state ESTABLISHED,RELATED -j ACCEPT;
