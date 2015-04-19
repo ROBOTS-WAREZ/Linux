@@ -127,16 +127,16 @@ iptables -A INPUT -i lo -m state --state ESTABLISHED,RELATED -j ACCEPT;
 iptables -A INPUT -p icmp --icmp-type echo-reply -m state --state ESTABLISHED -j ACCEPT;
 iptables -A INPUT -p udp -m multiport --sports 53,123 -m state --state ESTABLISHED -j ACCEPT;
 iptables -A INPUT -p tcp -m multiport --sports 22,80,443 -m state --state ESTABLISHED -j ACCEPT;
-#iptables -A INPUT -p tcp -m multiport --sports 113,194,994,6660:6669,6679,6697 -m state --state ESTABLISHED,RELATED -j ACCEPT;
-#iptables -A INPUT -p tcp -m multiport --sports 26000:28000 -m state --state ESTABLISHED,RELATED -j ACCEPT;
+#iptables -A INPUT -p tcp -m multiport --sports 113,194,994,6660:6669,6679,6697 -m state --state ESTABLISHED -j ACCEPT;
+#iptables -A INPUT -p tcp -m multiport --sports 26000:28000 -m state --state ESTABLISHED -j ACCEPT;
 
 # Allow outgoing signals.
 iptables -A OUTPUT -o lo --state NEW,ESTABLISHED,RELATED -j ACCEPT;
 iptables -A OUTPUT -p icmp --icmp-type echo-request -m state --state NEW,ESTABLISHED -j ACCEPT;
 iptables -A OUTPUT -p udp -m multiport --dports 53,123 -m state --state NEW,ESTABLISHED -j ACCEPT;
 iptables -A OUTPUT -p tcp -m multiport --dports 22,80,443 -m state --state NEW,ESTABLISHED -j ACCEPT;
-#iptables -A OUTPUT -p tcp -m multiport --dports 113,194,994,6660:6669,6679,6697 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT;
-#iptables -A OUTPUT -p tcp -m multiport --dports 26000:28000 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT;
+#iptables -A OUTPUT -p tcp -m multiport --dports 113,194,994,6660:6669,6679,6697 -m state --state NEW,ESTABLISHED -j ACCEPT;
+#iptables -A OUTPUT -p tcp -m multiport --dports 26000:28000 -m state --state NEW,ESTABLISHED -j ACCEPT;
 
 # Defensive persistence.
 iptables-save > /etc/iptables/rules.v4;
