@@ -14,7 +14,7 @@ apt-get dist-upgrade;
 apt-get install \
     gawk unzip \
     iptables-persistent \
-    sudo adduser \
+    sudo \
     xorg openbox \
     alsa-base alsa-utils `# Audio` \
     openjdk-7-jdk openjdk-7-jre icedtea-netx `# Java` \
