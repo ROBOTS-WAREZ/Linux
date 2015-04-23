@@ -432,6 +432,9 @@ A-C-F12 = TTY12
       <command>x-terminal-emulator</command>
     </action>
   </keybind>
+  <keybind key="F11">
+    <action name="ToggleFullscreen"/>
+  </keybind>
 </keyboard>
 
 <mouse>
