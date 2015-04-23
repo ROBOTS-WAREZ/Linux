@@ -412,6 +412,26 @@ echo "
   <keybind key=\"Print\">
     <action name=\"Execute\"><command>gnome-screenshot</command></action>
   </keybind>
+<!-- http://en.wikipedia.org/wiki/Table_of_keyboard_shortcuts
+
+Where do these come from?
+
+F11     = ToggleFullscreen (Only have a keybind for some special cirmucstances.)
+A-C-F1  = TTY1
+A-C-F2  = TTY2
+A-C-F3  = TTY3
+A-C-F4  = TTY4
+A-C-F5  = TTY5
+A-C-F6  = TTY6
+A-C-F7  = GUI0
+A-C-F12 = TTY12
+
+-->
+  <keybind key="C-A-T">
+    <action name="Execute">
+      <command>x-terminal-emulator</command>
+    </action>
+  </keybind>
 </keyboard>
 
 <mouse>
