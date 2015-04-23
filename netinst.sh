@@ -427,13 +427,25 @@ A-C-F7  = GUI0
 A-C-F12 = TTY12
 
 -->
-  <keybind key="C-A-T">
-    <action name="Execute">
+  <keybind key=\"C-A-T\">
+    <action name=\"Execute\">
       <command>x-terminal-emulator</command>
     </action>
   </keybind>
-  <keybind key="F11">
-    <action name="ToggleFullscreen"/>
+  <keybind key=\"F11\">
+    <action name=\"ToggleFullscreen\"/>
+  </keybind>
+  <keybind key=\"W-Up\">
+    <action name=\"GrowToEdge\"/>
+  </keybind>
+  <keybind key=\"W-Down\">
+    <action name=\"GrowToEdge\"><direction>south</direction></action>
+  </keybind>
+  <keybind key=\"W-Left\">
+    <action name=\"GrowToEdge\"><direction>west</direction></action>
+  </keybind>
+  <keybind key=\"W-Right\">
+    <action name=\"GrowToEdge\"><direction>east</direction></action>
   </keybind>
 </keyboard>
 
