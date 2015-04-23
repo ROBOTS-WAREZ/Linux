@@ -882,9 +882,9 @@ iptables -A INPUT -s 0.0.0.0/8 -j DROP;
 iptables -A INPUT -d 0.0.0.0/8 -j DROP;
 iptables -A INPUT -d 239.255.255.0/24 -j DROP;
 iptables -A INPUT -d 255.255.255.255 -j DROP;
-iptables -A INPUT -p icmp --icmp-type address-mask-request -j DROP
-iptables -A INPUT -p icmp --icmp-type timestamp-request -j DROP
-iptables -A INPUT -p icmp --icmp-type router-solicitation -j DROP
+iptables -A INPUT -p icmp --icmp-type address-mask-request -j DROP;
+iptables -A INPUT -p icmp --icmp-type timestamp-request -j DROP;
+iptables -A INPUT -p icmp --icmp-type router-solicitation -j DROP;
 # http://security.stackexchange.com/a/4745
 
 # Allow incoming signals.
