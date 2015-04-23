@@ -860,7 +860,7 @@ iptables -A INPUT   -m state --state INVALID -j DROP;
 iptables -A FORWARD -m state --state INVALID -j DROP;
 iptables -A OUTPUT  -m state --state INVALID -j DROP;
 iptables -A INPUT -f -j DROP; # fragments
-iptables -A INPUT -p tcp ! --syn -m state --state NEW -j DROP;
+iptables -A INPUT -p tcp ! --syn -m state --state NEW -j DROP; # new is synful
 iptables -A INPUT -p tcp --tcp-flags ALL ALL -j DROP; # xmas
 iptables -A INPUT -p tcp --tcp-flags ALL NONE -j DROP; # null
 iptables -A INPUT -p tcp --tcp-flags ALL FIN,URG,PSH -j DROP;
@@ -882,13 +882,14 @@ iptables -A INPUT -s 0.0.0.0/8 -j DROP;
 iptables -A INPUT -d 0.0.0.0/8 -j DROP;
 iptables -A INPUT -d 239.255.255.0/24 -j DROP;
 iptables -A INPUT -d 255.255.255.255 -j DROP;
+# icmp smurf
 iptables -A INPUT -p icmp --icmp-type address-mask-request -j DROP;
 iptables -A INPUT -p icmp --icmp-type timestamp-request -j DROP;
 iptables -A INPUT -p icmp --icmp-type router-solicitation -j DROP;
 # http://security.stackexchange.com/a/4745
 
 # Allow incoming signals.
-iptables -A INPUT -i lo -m state --state ESTABLISHED -j ACCEPT;
+iptables -A INPUT -i lo -m state --state ESTABLISHED -j ACCEPT; # loopback
 iptables -A INPUT -p icmp --icmp-type echo-reply -m limit --limit 2/second -m state --state ESTABLISHED -j ACCEPT;
 iptables -A INPUT -p udp -m multiport --sports 53,123 -m state --state ESTABLISHED -j ACCEPT;
 iptables -A INPUT -p tcp -m multiport --sports 22,80,443 -m state --state ESTABLISHED -j ACCEPT;
@@ -896,7 +897,7 @@ iptables -A INPUT -p tcp -m multiport --sports 22,80,443 -m state --state ESTABL
 #iptables -A INPUT -p tcp -m multiport --sports 26000:28000 -m state --state ESTABLISHED -j ACCEPT;
 
 # Allow outgoing signals.
-iptables -A OUTPUT -o lo --state NEW,ESTABLISHED -j ACCEPT;
+iptables -A OUTPUT -o lo -m state --state NEW,ESTABLISHED -j ACCEPT; # loopback
 iptables -A OUTPUT -p icmp --icmp-type echo-request -m limit --limit 2/second -m state --state NEW,ESTABLISHED -j ACCEPT;
 iptables -A OUTPUT -p udp -m multiport --dports 53,123 -m state --state NEW,ESTABLISHED -j ACCEPT;
 iptables -A OUTPUT -p tcp -m multiport --dports 22,80,443 -m state --state NEW,ESTABLISHED -j ACCEPT;
