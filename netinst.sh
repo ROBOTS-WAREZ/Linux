@@ -13,8 +13,7 @@ apt-get dist-upgrade;
 ######## Software Package Installations Terminally ########
 apt-get install \
     gawk unzip \
-    iptables-persistent \
-    sudo \
+    sudo iptables-persistent \
     xorg openbox \
     alsa-base alsa-utils `# Audio` \
     openjdk-7-jdk openjdk-7-jre icedtea-netx `# Java` \
