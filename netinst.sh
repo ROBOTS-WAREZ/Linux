@@ -1,6 +1,6 @@
 #!/bin/bash
 # su; # SuperUser login.
-# wget -O- https://raw.github.com/ROBOTS-WAREZ/Linux/master/netinst.sh | bash; # Run this script.
+# wget -O- https://raw.github.com/ROBOTS-WAREZ/Tuxnet/master/netinst.sh | bash; # Run this script.
 # smxi; # Mainly for the GPU drivers. [http://smxi.org/site/install.htm]
 # reboot; # SuperUser signout.
 
