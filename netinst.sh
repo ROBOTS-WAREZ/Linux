@@ -922,23 +922,9 @@ iptables -A INPUT -p icmp --icmp-type timestamp-request -j DROP;
 iptables -A INPUT -p icmp --icmp-type router-solicitation -j DROP;
 # http://security.stackexchange.com/a/4745
 
-# Allow incoming signals.
-iptables -A INPUT -i lo -m state --state ESTABLISHED -j ACCEPT; # loopback
-iptables -A INPUT -p icmp --icmp-type echo-reply -m limit --limit 2/second -m state --state ESTABLISHED -j ACCEPT;
-iptables -A INPUT -p udp -m multiport --sports 53,123 -m state --state ESTABLISHED -j ACCEPT;
-iptables -A INPUT -p tcp -m multiport --sports 22,43,80,443 -m state --state ESTABLISHED -j ACCEPT;
-#iptables -A INPUT -p tcp --sport 2083 -m state --state ESTABLISHED -j ACCEPT;
-#iptables -A INPUT -p tcp -m multiport --sports 113,194,994,6660:6669,6679,6697 -m state --state ESTABLISHED -j ACCEPT;
-#iptables -A INPUT -p tcp -m multiport --sports 26000:28000 -m state --state ESTABLISHED -j ACCEPT;
-
-# Allow outgoing signals.
-iptables -A OUTPUT -o lo -m state --state NEW,ESTABLISHED -j ACCEPT; # loopback
-iptables -A OUTPUT -p icmp --icmp-type echo-request -m limit --limit 2/second -m state --state NEW,ESTABLISHED -j ACCEPT;
-iptables -A OUTPUT -p udp -m multiport --dports 53,123 -m state --state NEW,ESTABLISHED -j ACCEPT;
-iptables -A OUTPUT -p tcp -m multiport --dports 22,43,80,443 -m state --state NEW,ESTABLISHED -j ACCEPT;
-#iptables -A OUTPUT -p tcp --dport 2083 -m state --state NEW,ESTABLISHED -j ACCEPT;
-#iptables -A OUTPUT -p tcp -m multiport --dports 113,194,994,6660:6669,6679,6697 -m state --state NEW,ESTABLISHED -j ACCEPT;
-#iptables -A OUTPUT -p tcp -m multiport --dports 26000:28000 -m state --state NEW,ESTABLISHED -j ACCEPT;
+# Allowable signals.
+iptables -A INPUT -m state --state ESTABLISHED -j ACCEPT;
+iptables -A OUTPUT -m state --state NEW,ESTABLISHED -j ACCEPT;
 
 # Defensive persistence.
 iptables-save > /etc/iptables/rules.v4;
