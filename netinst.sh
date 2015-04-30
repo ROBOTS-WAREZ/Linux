@@ -13,7 +13,7 @@ apt-get update && apt-get dist-upgrade;
 apt-get install \
     gawk unzip \
     sudo iptables-persistent \
-    xorg openbox \
+    xorg openbox menu \
     alsa-base alsa-utils `# Audio` \
     openjdk-7-jdk openjdk-7-jre icedtea-netx `# Java` \
     iceweasel `# Web Browser & File Viewer` \
@@ -877,57 +877,75 @@ WHEN
 # Just in case, you never know. ;-)
 ip6tables --flush;
 ip6tables --delete-chain;
-iptables --flush;
-iptables --delete-chain;
+iptables  --flush;
+iptables  --delete-chain;
 
 # Default policies.
-ip6tables -P INPUT DROP;
-ip6tables -P OUTPUT DROP;
+ip6tables -P INPUT   DROP;
+ip6tables -P OUTPUT  DROP;
 ip6tables -P FORWARD DROP;
-iptables -P INPUT DROP;
-iptables -P OUTPUT DROP;
-iptables -P FORWARD DROP;
+iptables  -P INPUT   DROP;
+iptables  -P OUTPUT  DROP;
+iptables  -P FORWARD DROP;
 
-# Deny malformed/illegal/corrupt signals.
-iptables -A INPUT   -m state --state INVALID -j DROP;
-iptables -A FORWARD -m state --state INVALID -j DROP;
-iptables -A OUTPUT  -m state --state INVALID -j DROP;
-iptables -A INPUT -f -j DROP; # fragments
-iptables -A INPUT -p tcp ! --syn -m state --state NEW -j DROP; # new is synful
-iptables -A INPUT -p tcp --tcp-flags ALL ALL -j DROP; # xmas
-iptables -A INPUT -p tcp --tcp-flags ALL NONE -j DROP; # null
-iptables -A INPUT -p tcp --tcp-flags ALL FIN,URG,PSH -j DROP;
-iptables -A INPUT -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -j DROP;
-iptables -A INPUT -p tcp --tcp-flags SYN,RST SYN,RST -j DROP;
-iptables -A INPUT -p tcp --tcp-flags SYN,FIN SYN,FIN -j DROP;
+# Deny evil signals.
+ip6tables -A INPUT   -m state --state INVALID -j DROP;
+ip6tables -A FORWARD -m state --state INVALID -j DROP;
+ip6tables -A OUTPUT  -m state --state INVALID -j DROP;
+iptables  -A INPUT   -m state --state INVALID -j DROP;
+iptables  -A FORWARD -m state --state INVALID -j DROP;
+iptables  -A OUTPUT  -m state --state INVALID -j DROP;
+ip6tables -A INPUT -f -j DROP; # fragments
+iptables  -A INPUT -f -j DROP; # fragments
+ip6tables -A INPUT -p tcp ! --syn -m state --state NEW        -j DROP; # new is synful
+ip6tables -A INPUT -p tcp --tcp-flags ALL ALL                 -j DROP; # xmas
+ip6tables -A INPUT -p tcp --tcp-flags ALL NONE                -j DROP; # null
+ip6tables -A INPUT -p tcp --tcp-flags ALL FIN,URG,PSH         -j DROP;
+ip6tables -A INPUT -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -j DROP;
+ip6tables -A INPUT -p tcp --tcp-flags SYN,RST SYN,RST         -j DROP;
+ip6tables -A INPUT -p tcp --tcp-flags SYN,FIN SYN,FIN         -j DROP;
+iptables  -A INPUT -p tcp ! --syn -m state --state NEW        -j DROP; # new is synful
+iptables  -A INPUT -p tcp --tcp-flags ALL ALL                 -j DROP; # xmas
+iptables  -A INPUT -p tcp --tcp-flags ALL NONE                -j DROP; # null
+iptables  -A INPUT -p tcp --tcp-flags ALL FIN,URG,PSH         -j DROP;
+iptables  -A INPUT -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -j DROP;
+iptables  -A INPUT -p tcp --tcp-flags SYN,RST SYN,RST         -j DROP;
+iptables  -A INPUT -p tcp --tcp-flags SYN,FIN SYN,FIN         -j DROP;
 # rfc1918
-iptables -A INPUT -s 10.0.0.0/8 -j DROP;
+iptables -A INPUT -s 10.0.0.0/8    -j DROP;
 iptables -A INPUT -s 172.16.0.0/12 -j DROP;
 #iptables -A INPUT -s 192.168.0.0/16 -j DROP;
 # spoof
-iptables -A INPUT -s 169.254.0.0/16 -j DROP;
-iptables -A INPUT -s 127.0.0.0/8 -j DROP;
-iptables -A INPUT -s 224.0.0.0/4 -j DROP;
-iptables -A INPUT -d 224.0.0.0/4 -j DROP;
-iptables -A INPUT -s 240.0.0.0/5 -j DROP;
-iptables -A INPUT -d 240.0.0.0/5 -j DROP;
-iptables -A INPUT -s 0.0.0.0/8 -j DROP;
-iptables -A INPUT -d 0.0.0.0/8 -j DROP;
+iptables -A INPUT -s 169.254.0.0/16   -j DROP;
+iptables -A INPUT -s 127.0.0.0/8      -j DROP;
+iptables -A INPUT -s 224.0.0.0/4      -j DROP;
+iptables -A INPUT -d 224.0.0.0/4      -j DROP;
+iptables -A INPUT -s 240.0.0.0/5      -j DROP;
+iptables -A INPUT -d 240.0.0.0/5      -j DROP;
+iptables -A INPUT -s 0.0.0.0/8        -j DROP;
+iptables -A INPUT -d 0.0.0.0/8        -j DROP;
 iptables -A INPUT -d 239.255.255.0/24 -j DROP;
-iptables -A INPUT -d 255.255.255.255 -j DROP;
-# icmp smurf
-iptables -A INPUT -p icmp --icmp-type address-mask-request -j DROP;
-iptables -A INPUT -p icmp --icmp-type timestamp-request -j DROP;
-iptables -A INPUT -p icmp --icmp-type router-solicitation -j DROP;
+iptables -A INPUT -d 255.255.255.255  -j DROP;
+# smurf
+ip6tables -A INPUT -p icmp --icmp-type address-mask-request -j DROP;
+ip6tables -A INPUT -p icmp --icmp-type timestamp-request    -j DROP;
+ip6tables -A INPUT -p icmp --icmp-type router-solicitation  -j DROP;
+iptables  -A INPUT -p icmp --icmp-type address-mask-request -j DROP;
+iptables  -A INPUT -p icmp --icmp-type timestamp-request    -j DROP;
+iptables  -A INPUT -p icmp --icmp-type router-solicitation  -j DROP;
 # http://security.stackexchange.com/a/4745
 
 # Allowable signals.
-iptables -A INPUT -m state --state ESTABLISHED -j ACCEPT;
-iptables -A OUTPUT -m state --state NEW,ESTABLISHED -j ACCEPT;
+ip6tables -A INPUT  -m state --state ESTABLISHED     -j ACCEPT;
+ip6tables -A OUTPUT -m state --state ESTABLISHED,NEW -j ACCEPT;
+iptables  -A INPUT  -m state --state ESTABLISHED     -j ACCEPT;
+iptables  -A OUTPUT -m state --state ESTABLISHED,NEW -j ACCEPT;
 
 # Defensive persistence.
-iptables-save > /etc/iptables/rules.v4;
+iptables-save  > /etc/iptables/rules.v4;
 ip6tables-save > /etc/iptables/rules.v6;
 service iptables-persistent start;
+
+# Need to LOG bad connections into a blacklist...
 
 exit 0;
