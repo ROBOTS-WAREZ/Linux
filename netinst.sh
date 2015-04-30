@@ -7,8 +7,7 @@
 username=$(getent passwd 1000 | cut -d: -f1);
 userpath=/home/$username;
 
-apt-get update;
-apt-get dist-upgrade;
+apt-get update && apt-get dist-upgrade;
 
 ######## Software Package Installations Terminally ########
 apt-get install \
@@ -931,5 +930,4 @@ iptables-save > /etc/iptables/rules.v4;
 ip6tables-save > /etc/iptables/rules.v6;
 service iptables-persistent start;
 
-# https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg
-# https://wiki.debian.org/EnvironmentVariables
+exit 0;
