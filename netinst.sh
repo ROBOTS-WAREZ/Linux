@@ -10,16 +10,16 @@ userpath=/home/$username;
 apt-get update && apt-get dist-upgrade;
 
 ######## Software Package Installations Terminally ########
-apt-get install                                                          \
-    gawk unzip                                                           \
-    sudo iptables-persistent                                             \
-    xorg openbox menu                                                    \
-    alsa-base alsa-utils `# Audio`                                       \
-    openjdk-7-jdk openjdk-7-jre icedtea-netx `# Java`                    \
-    iceweasel `# Web Browser & File Viewer`                              \
-    vlc `# Media Player`                                                 \
-    gimp inkscape blender `# Visiographical Editors (Rasta, Vector, 3D)` \
-    audacity `# Audiographical Editor`                                   \
+apt-get install              \
+    gawk unzip               \
+    sudo iptables-persistent \
+    xorg openbox menu        \
+    alsa-base alsa-utils                     `# Audio`                                      \
+    openjdk-7-jdk openjdk-7-jre icedtea-netx `# Java`                                       \
+    iceweasel                                `# Web Browser & File Viewer`                  \
+    vlc                                      `# Media Player`                               \
+    gimp inkscape blender                    `# Visiographical Editors (Rasta, Vector, 3D)` \
+    audacity                                 `# Audiographical Editor`                      \
 --assume-yes;
 # http://stackoverflow.com/a/12797512
 
