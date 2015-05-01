@@ -36,7 +36,7 @@ alsactl init;
 
 ######## Firefox || Iceweasel || GNU IceCat ########
 # about:config (http://kb.mozillazine.org/User.js_file#Removing_user.js_entries)
-cat << WHEN > $userpath/.mozilla/firefox/$(ls ~/.mozilla/firefox/ | grep .default)/user.js; # The profile directory? What if (profiles>1)?
+cat << WHEN > $userpath/.mozilla/firefox/$(ls $userpath/.mozilla/firefox/ | grep .default)/user.js; # The profile directory? What if (profiles>1)?
 // When Firefox starts: Show my windows and tabs from last time
 user_pref("browser.startup.page", 3);
 // Use autoscrolling (middle click and drag to navigate the page)
@@ -66,7 +66,7 @@ cat << WHEN > $userpath/.config/openbox/menu.xml;
     <action name="Execute"><execute>x-www-browser</execute></action>
   </item>
   <item label="File Manager">
-    <action name="Execute"><execute>x-www-browser -new-window file://'$userpath'/</execute></action>
+    <action name="Execute"><execute>x-www-browser -new-window file://$userpath/</execute></action>
   </item>
   <!-- This requires the presence of the 'menu' package to work -->
   <menu id="/Debian" />
