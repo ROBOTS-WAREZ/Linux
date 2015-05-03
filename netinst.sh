@@ -927,9 +927,9 @@ iptables -A INPUT -d 0.0.0.0/8        -j DROP;
 iptables -A INPUT -d 239.255.255.0/24 -j DROP;
 iptables -A INPUT -d 255.255.255.255  -j DROP;
 # smurf
-ip6tables -A INPUT -p icmp --icmp-type address-mask-request -j DROP;
-ip6tables -A INPUT -p icmp --icmp-type timestamp-request    -j DROP;
-ip6tables -A INPUT -p icmp --icmp-type router-solicitation  -j DROP;
+#ip6tables -A INPUT -p icmpv6 --icmpv6-type address-mask-request -j DROP;
+#ip6tables -A INPUT -p icmpv6 --icmpv6-type timestamp-request    -j DROP;
+ip6tables -A INPUT -p icmpv6 --icmpv6-type router-solicitation  -j DROP;
 iptables  -A INPUT -p icmp --icmp-type address-mask-request -j DROP;
 iptables  -A INPUT -p icmp --icmp-type timestamp-request    -j DROP;
 iptables  -A INPUT -p icmp --icmp-type router-solicitation  -j DROP;
