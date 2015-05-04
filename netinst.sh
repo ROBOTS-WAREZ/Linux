@@ -895,7 +895,7 @@ ip6tables -A OUTPUT  -m state --state INVALID -j DROP;
 iptables  -A INPUT   -m state --state INVALID -j DROP;
 iptables  -A FORWARD -m state --state INVALID -j DROP;
 iptables  -A OUTPUT  -m state --state INVALID -j DROP;
-ip6tables -A INPUT -f -j DROP; # fragments
+#ip6tables -A INPUT -f -j DROP; # fragments
 iptables  -A INPUT -f -j DROP; # fragments
 ip6tables -A INPUT -p tcp ! --syn -m state --state NEW        -j DROP; # new is synful
 ip6tables -A INPUT -p tcp --tcp-flags ALL ALL                 -j DROP; # xmas
